@@ -1,0 +1,91 @@
+<form name="orderForm" novalidate>
+<div class="panel panel-default mt-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.1);
+			 border-radius: 8px; background-color: #f8f9fa;">
+    <div class="panel-heading text-center fs-4 fw-bold">Chỉnh Sửa Đơn Hàng</div>
+    <div class="panel-body">
+        <div class="row m-2">
+            <div class="form-group col-sm-6 fw-bold">
+                <label>Tên</label>
+                <input ng-model="form.hoten" class="form-control" />
+            </div>
+            <div class="form-group col-sm-6 fw-bold">
+                <label>Địa Chỉ</label>
+                <input ng-model="form.address" class="form-control" />
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="form-group col-sm-6 fw-bold">
+                <label>SĐT</label>
+                <input ng-model="form.sdt" class="form-control" />
+            </div>
+            <div class="form-group col-sm-6 fw-bold">
+                <label>Email</label>
+                <input ng-model="form.email" class="form-control" />
+            </div>
+        </div>
+        <div class="row m-2">
+	    <div class="form-group col-sm-6 fw-bold">
+	        <label>Ngày</label>
+	        <input ng-model="form.createdAt" class="form-control" readonly style="background-color: #f0f0f0; cursor: not-allowed;"/>
+	    </div>
+	    <div class="form-group col-sm-6 fw-bold">
+		    <label>Giá</label>
+		    <div ng-if="!isEditable">
+		        <label style="border: 1px solid #ced4da; font-weight: normal; border-radius: 5px; height: 38px; font-size: 14px;
+		        			 padding: 10px; width: 100%; background-color: #f0f0f0; cursor: not-allowed;">
+		            {{ form.totalamount | number : 3}} VNĐ
+		        </label>
+		    </div>
+		    <div ng-if="isEditable">
+		        <input type="text"  ng-model="form.totalamount" class="form-control"/>
+		    </div>
+		</div>
+	    
+	</div>
+	<div class="row m-2">
+	    <div class="form-group col-sm-6 fw-bold">
+	        <label>Tài Khoản</label>
+	        <input ng-model="form.account.username" class="form-control" readonly style="background-color: #f0f0f0; cursor: not-allowed;"/>
+	    </div>
+	    <div class="form-group col-sm-6 fw-bold">
+	        <label>Họ và Tên</label>
+	        <input ng-model="form.account.fullname" class="form-control" readonly style="background-color: #f0f0f0; cursor: not-allowed;"/>
+	    </div>
+	</div>
+
+        <div class="row m-2">
+            <div class="form-group col-sm-6">
+                <label class=" fw-bold">Trạng Thái</label><br />
+                <label class="form-check-label me-3 ">
+                    <input type="radio" ng-model="form.status" ng-value="true" class="form-check-input" />
+                    Chờ Xử Lý
+                </label>
+                <label class="form-check-label">
+                    <input type="radio" ng-model="form.status" ng-value="false" class="form-check-input" />
+                    Đã Hoàn Thành
+                </label>
+            </div>
+
+            <div class="form-group col-sm-6 fw-bold">
+                <label>Phương Thức Thanh Toán</label>
+                <select ng-model="form.payment" class="form-control" ng-options="payment as payment.paymethod for payment in payments track by payment.id">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 text-center m-3 p-3">
+	    <button class="btn btn-success" ng-click="create()" ng-disabled="form.id">
+	        <i class="bi bi-plus-circle"></i> Thêm
+	    </button>
+	    <button class="btn btn-primary" ng-click="update()" ng-disabled="!form.id">
+	        <i class="bi bi-pencil-square"></i> Sửa
+	    </button>
+	    <button class="btn btn-danger" ng-click="delete(form)" ng-disabled="!form.id">
+	        <i class="bi bi-trash"></i> Xóa
+	    </button>
+	    <button class="btn btn-warning" ng-click="reset()">
+	        <i class="bi bi-arrow-repeat"></i> Mới
+	    </button>
+	</div>
+</div>
+</form>

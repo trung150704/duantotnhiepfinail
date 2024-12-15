@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+</head>
+<body>
+ <main>
+     <div class="container mt-4" >
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar" style="margin: 39px 0px 15px 0px;">
+                <!-- Category heading -->
+                <div style="text-align: center;
+                            position: relative;
+                            display: block;
+                            padding: 10px 15px;
+                           ">
+                   <a  th:href="@{|/product/list|}">TẤT CẢ</a> |
+                    <a  th:href="@{|/product/ListNam|}">NAM</a> |
+                    <a  th:href="@{|/product/ListNu|}"><strong style="color: #181414;">NỮ</strong></a>
+                </div>
+                
+                <!-- Categories -->
+                <hr>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        Accessories | Phụ kiện
+                    </li>
+                    <li class="list-group-item">
+                        Footwear | Lên chân
+                    </li>
+                    <li class="list-group-item">
+                        Top | Nửa trên
+                    </li>
+                </ul>
+                <hr>
+
+                
+                <div class="accordion" id="filterAccordion accordionPanelsStayOpenExample">
+                    <!-- First Filter Section -->
+                    <div class="filter-section">
+                        <div class="filter-title" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            DÒNG SẢN PHẨM <span class="toggle-icon">^</span>
+                        </div>
+                        <div id="collapseOne" class="collapse show" data-bs-parent="#filterAccordion">
+                            <ul class="filter-list">
+                                 <li th:each="line : ${productLines}">
+                <a style="color: black;" th:href="@{'/product/list'(productLine=${line})}" th:text="${line}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="filter-section">
+    <div class="filter-title" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        GIÁ <span class="toggle-icon">^</span>
+    </div>
+    <div id="collapseTwo" class="collapse show" data-bs-parent="#filterAccordion">
+            <ul class="filter-list" >
+                <li >    <a style="color: black;" th:href="@{/product/list(priceDirection='asc')}">Giá sản phẩm tăng dần</a></li>
+                <li >      <a style="color: black;" th:href="@{/product/list(priceDirection='desc')}">Giá sản phẩm giảm dần</a></li>
+                <li >     <a style="color: black;" th:href="@{/product/list(priceFilter='greater')}">> 500K</a></li>
+                <li >   <a style="color: black;" th:href="@{/product/list(priceFilter='less')}">< 500K</a></li>
+                
+            </ul>
+           
+    </div>
+</div>
+
+                    <div class="filter-section">
+                        <div class="filter-title" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                            KIỂU DÁNG <span class="toggle-icon">^</span>
+                        </div>
+                        <div id="collapseThree" class="collapse show" data-bs-parent="#filterAccordion">
+                            <ul class="filter-list">
+                                <li>Low Top</li>
+                                <li>High Top</li>
+                                <li>Slip-on</li>
+                                <li>Mid Top</li>
+                                <li>Mule</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
+             <div class="col-md-9">
+                <!-- Free shipping banner -->
+                <div class="free-shipping-banner">
+                    FREE SHIPPING<br>Với hoá đơn từ 900K!
+                </div>
+                <div class="container mt-5">
+                    <div class="row">
+                        <!-- Product 1 -->
+                        <div class="col-md-4" th:each="p : ${items}">
+                            <div class="product-card position-relative">
+                               <a th:href="@{|/product/detail/${p.id}|}"> <img th:src="@{/Images/{images}(images=${p.images})}" alt="Vintas Public 2000s - Low Top"></a>
+                                <div class="product-title" th:utext=${p.name}></div>
+                                <div class="fw-normal" th:utext=${p.describe}></div>
+                                <div class="product-price"><span  th:text="${p.price}+'00 VNĐ'"></span></div>
+                                <button class="btn-buy" th:href="@{|/product/detail/${p.id}|}">MUA NGAY</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+</body>
+</html>

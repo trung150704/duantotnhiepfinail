@@ -1,0 +1,232 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 98566144 bytes for G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3600), pid=7960, tid=14088
+#
+# JRE version:  (21.0.2+13) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (21.0.2+13-LTS-58, mixed mode, emulated-client, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=59210 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.jmx.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -Dspring.application.admin.enabled=true -XX:TieredStopAtLevel=1 -Dspring.boot.project.name=DAGiay -Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages com.mt.DaGiayApplication --spring.output.ansi.enabled=always
+
+Host: Intel(R) Core(TM) i3-7100U CPU @ 2.40GHz, 4 cores, 5G,  Windows 10 , 64 bit Build 19041 (10.0.19041.5072)
+Time: Wed Nov 27 17:44:14 2024 SE Asia Standard Time elapsed time: 0.028639 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000279e824d720):  JavaThread "Unknown thread" [_thread_in_vm, id=14088, stack(0x000000a497700000,0x000000a497800000) (1024K)]
+
+Stack: [0x000000a497700000,0x000000a497800000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6cade9]
+V  [jvm.dll+0x8569c1]
+V  [jvm.dll+0x858d2e]
+V  [jvm.dll+0x859413]
+V  [jvm.dll+0x280e56]
+V  [jvm.dll+0x6c74d5]
+V  [jvm.dll+0x6bbeca]
+V  [jvm.dll+0x355bca]
+V  [jvm.dll+0x35d816]
+V  [jvm.dll+0x3ae67e]
+V  [jvm.dll+0x3ae928]
+V  [jvm.dll+0x3295dc]
+V  [jvm.dll+0x32a16b]
+V  [jvm.dll+0x81efa9]
+V  [jvm.dll+0x3bba01]
+V  [jvm.dll+0x807928]
+V  [jvm.dll+0x44f50e]
+V  [jvm.dll+0x450e11]
+C  [jli.dll+0x52a3]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17374]
+C  [ntdll.dll+0x4cc91]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007fff44b2bb88, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x00000279ea342dd0 WorkerThread "GC Thread#0"                     [id=6700, stack(0x000000a497800000,0x000000a497900000) (1024K)]
+  0x00000279ea34f600 ConcurrentGCThread "G1 Main Marker"            [id=14304, stack(0x000000a497900000,0x000000a497a00000) (1024K)]
+  0x00000279ea350010 WorkerThread "G1 Conc#0"                       [id=11868, stack(0x000000a497a00000,0x000000a497b00000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007fff4429c6a7]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fff44b9ce68] Heap_lock - owner thread: 0x00000279e824d720
+
+Heap address: 0x00000000a3600000, size: 1482 MB, Compressed Oops mode: 32-bit
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 5 size 8 Array Of Cards #cards 12 size 40 Howl #buckets 4 coarsen threshold 1843 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 2048
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x00000000a3600000, 0x0000000100000000)
+  region size 1024K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007fff446839f9]
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.012 Loaded shared library C:\Program Files\Java\jdk-21\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff6e3480000 - 0x00007ff6e3490000 	C:\Program Files\Java\jdk-21\bin\javaw.exe
+0x00007fff89970000 - 0x00007fff89b68000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007fff87b60000 - 0x00007fff87c22000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007fff87340000 - 0x00007fff8763e000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007fff87860000 - 0x00007fff87960000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007fff80c00000 - 0x00007fff80c19000 	C:\Program Files\Java\jdk-21\bin\jli.dll
+0x00007fff892e0000 - 0x00007fff89391000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007fff89890000 - 0x00007fff8992e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007fff88840000 - 0x00007fff888df000 	C:\WINDOWS\System32\sechost.dll
+0x00007fff87990000 - 0x00007fff87ab3000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007fff87960000 - 0x00007fff87987000 	C:\WINDOWS\System32\bcrypt.dll
+0x00007fff88990000 - 0x00007fff88b2d000 	C:\WINDOWS\System32\USER32.dll
+0x00007fff87690000 - 0x00007fff876b2000 	C:\WINDOWS\System32\win32u.dll
+0x00007fff89400000 - 0x00007fff8942b000 	C:\WINDOWS\System32\GDI32.dll
+0x00007fff87010000 - 0x00007fff87127000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007fff87750000 - 0x00007fff877ed000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007fff80c30000 - 0x00007fff80c4b000 	C:\Program Files\Java\jdk-21\bin\VCRUNTIME140.dll
+0x00007fff755c0000 - 0x00007fff7585a000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.4355_none_60b8b9eb71f62e16\COMCTL32.dll
+0x00007fff810c0000 - 0x00007fff810ca000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007fff89560000 - 0x00007fff8958f000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007fff7fdf0000 - 0x00007fff7fdfc000 	C:\Program Files\Java\jdk-21\bin\vcruntime140_1.dll
+0x00007fff53560000 - 0x00007fff535ee000 	C:\Program Files\Java\jdk-21\bin\msvcp140.dll
+0x00007fff43f60000 - 0x00007fff44c77000 	C:\Program Files\Java\jdk-21\bin\server\jvm.dll
+0x00007fff89700000 - 0x00007fff8976b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007fff86e70000 - 0x00007fff86ebb000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007fff74610000 - 0x00007fff74637000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007fff86e50000 - 0x00007fff86e62000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007fff85820000 - 0x00007fff85832000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007fff7d010000 - 0x00007fff7d01a000 	C:\Program Files\Java\jdk-21\bin\jimage.dll
+0x00007fff84c10000 - 0x00007fff84df4000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007fff6d1b0000 - 0x00007fff6d1e4000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007fff876c0000 - 0x00007fff87742000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007fff7a6b0000 - 0x00007fff7a6cf000 	C:\Program Files\Java\jdk-21\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.4355_none_60b8b9eb71f62e16;C:\Program Files\Java\jdk-21\bin\server
+
+VM Arguments:
+jvm_args: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=59210 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.jmx.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -Dspring.application.admin.enabled=true -XX:TieredStopAtLevel=1 -Dspring.boot.project.name=DAGiay -Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages 
+java_command: com.mt.DaGiayApplication --spring.output.ansi.enabled=always
+java_class_path (initial): D:\FPT poly\DANT(ky7)\BaoVe\DAGiay\target\classes;C:\Users\lekha\.m2\repository\commons-codec\commons-codec\1.15\commons-codec-1.15.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-mail\2.6.8\spring-boot-starter-mail-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter\2.6.8\spring-boot-starter-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-logging\2.6.8\spring-boot-starter-logging-2.6.8.jar;C:\Users\lekha\.m2\repository\ch\qos\logback\logback-classic\1.2.11\logback-classic-1.2.11.jar;C:\Users\lekha\.m2\repository\ch\qos\logback\logback-core\1.2.11\logback-core-1.2.11.jar;C:\Users\lekha\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.17.2\log4j-to-slf4j-2.17.2.jar;C:\Users\lekha\.m2\repository\org\apache\logging\log4j\log4j-api\2.17.2\log4j-api-2.17.2.jar;C:\Users\lekha\.m2\repository\org\slf4j\jul-to-slf4j\1.7.36\jul-to-slf4j-1.7.36.jar;C:\Users\lekha\.m2\repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;C:\Users\lekha\.m2\repository\org\yaml\snakeyaml\1.29\snakeyaml-1.29.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-context-support\5.3.20\spring-context-support-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-beans\5.3.20\spring-beans-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-context\5.3.20\spring-context-5.3.20.jar;C:\Users\lekha\.m2\repository\com\sun\mail\jakarta.mail\1.6.7\jakarta.mail-1.6.7.jar;C:\Users\lekha\.m2\repository\com\sun\activation\jakarta.activation\1.2.2\jakarta.activation-1.2.2.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-oauth2-client\2.6.8\spring-boot-starter-oauth2-client-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\security\spring-security-config\5.6.5\spring-security-config-5.6.5.jar;C:\Users\lekha\.m2\repository\org\springframework\security\spring-security-core\5.6.5\spring-security-core-5.6.5.jar;C:\Users\lekha\.m2\repository\org\springframework\security\spring-security-crypto\5.6.5\spring-security-crypto-5.6.5.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-expression\5.3.20\spring-expression-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\security\spring-security-oauth2-client\5.6.5\spring-security-oauth2-client-5.6.5.jar;C:\Users\lekha\.m2\repository\org\springframework\security\spring-security-oauth2-core\5.6.5\spring-security-oauth2-core-5.6.5.jar;C:\Users\lekha\.m2\repository\com\nimbusds\oauth2-oidc-sdk\9.19\oauth2-oidc-sdk-9.19.jar;C:\Users\lekha\.m2\repository\com\github\stephenc\jcip\jcip-annotations\1.0-1\jcip-annotations-1.0-1.jar;C:\Users\lekha\.m2\repository\com\nimbusds\content-type\2.1\content-type-2.1.jar;C:\Users\lekha\.m2\repository\com\nimbusds\lang-tag\1.5\lang-tag-1.5.jar;C:\Users\lekha\.m2\repository\org\springframework\security\spring-security-oauth2-jose\5.6.5\spring-security-oauth2-jose-5.6.5.jar;C:\Users\lekha\.m2\repository\com\nimbusds\nimbus-jose-jwt\9.14\nimbus-jose-jwt-9.14.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-security\2.6.8\spring-boot-starter-security-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-aop\5.3.20\spring-aop-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\security\spring-security-web\5.6.5\spring-security-web-5.6.5.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-thymeleaf\2.6.8\spring-boot-starter-thymeleaf-2.6.8.jar;C:\Users\lekha\.m2\repository\org\thymeleaf\extras\thymeleaf-extras-java8time\3.0.4.RELEASE\thymeleaf-extras-java8time-3.0.4.RELEASE.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-validation\2.6.8\spring-boot-starter-validation-2.6.8.jar;C:\Users\lekha\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\9.0.63\tomcat-embed-el-9.0.63.jar;C:\Users\lekha\.m2\repository\org\hibernate\validator\hibernate-validator\6.2.3.Final\hibernate-validator-6.2.3.Final.jar;C:\Users\lekha\.m2\repository\jakarta\validation\jakarta.validation-api\2.0.2\jakarta.validation-api-2.0.2.jar;C:\Users\lekha\.m2\repository\org\jboss\logging\jboss-logging\3.4.3.Final\jboss-logging-3.4.3.Final.jar;C:\Users\lekha\.m2\repository\com\fasterxml\classmate\1.5.1\classmate-1.5.1.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-web\2.6.8\spring-boot-starter-web-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-json\2.6.8\spring-boot-starter-json-2.6.8.jar;C:\Users\lekha\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.13.3\jackson-databind-2.13.3.jar;C:\Users\lekha\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.13.3\jackson-annotations-2.13.3.jar;C:\Users\lekha\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.13.3\jackson-core-2.13.3.jar;C:\Users\lekha\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.13.3\jackson-datatype-jdk8-2.13.3.jar;C:\Users\lekha\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.13.3\jackson-datatype-jsr310-2.13.3.jar;C:\Users\lekha\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.13.3\jackson-module-parameter-names-2.13.3.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\2.6.8\spring-boot-starter-tomcat-2.6.8.jar;C:\Users\lekha\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\9.0.63\tomcat-embed-core-9.0.63.jar;C:\Users\lekha\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\9.0.63\tomcat-embed-websocket-9.0.63.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-web\5.3.20\spring-web-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-webmvc\5.3.20\spring-webmvc-5.3.20.jar;C:\Users\lekha\.m2\repository\org\thymeleaf\extras\thymeleaf-extras-springsecurity5\3.0.4.RELEASE\thymeleaf-extras-springsecurity5-3.0.4.RELEASE.jar;C:\Users\lekha\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-devtools\2.6.8\spring-boot-devtools-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot\2.6.8\spring-boot-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.6.8\spring-boot-autoconfigure-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\2.6.8\spring-boot-starter-data-jpa-2.6.8.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-aop\2.6.8\spring-boot-starter-aop-2.6.8.jar;C:\Users\lekha\.m2\repository\org\aspectj\aspectjweaver\1.9.7\aspectjweaver-1.9.7.jar;C:\Users\lekha\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\2.6.8\spring-boot-starter-jdbc-2.6.8.jar;C:\Users\lekha\.m2\repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-jdbc\5.3.20\spring-jdbc-5.3.20.jar;C:\Users\lekha\.m2\repository\jakarta\transaction\jakarta.transaction-api\1.3.3\jakarta.transaction-api-1.3.3.jar;C:\Users\lekha\.m2\repository\jakarta\persistence\jakarta.persistence-api\2.2.3\jakarta.persistence-api-2.2.3.jar;C:\Users\lekha\.m2\repository\org\hibernate\hibernate-core\5.6.9.Final\hibernate-core-5.6.9.Final.jar;C:\Users\lekha\.m2\repository\net\bytebuddy\byte-buddy\1.11.22\byte-buddy-1.11.22.jar;C:\Users\lekha\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\lekha\.m2\repository\org\jboss\jandex\2.4.2.Final\jandex-2.4.2.Final.jar;C:\Users\lekha\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.1.2.Final\hibernate-commons-annotations-5.1.2.Final.jar;C:\Users\lekha\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.6\jaxb-runtime-2.3.6.jar;C:\Users\lekha\.m2\repository\org\glassfish\jaxb\txw2\2.3.6\txw2-2.3.6.jar;C:\Users\lekha\.m2\repository\com\sun\istack\istack-commons-runtime\3.0.12\istack-commons-runtime-3.0.12.jar;C:\Users\lekha\.m2\repository\org\springframework\data\spring-data-jpa\2.6.4\spring-data-jpa-2.6.4.jar;C:\Users\lekha\.m2\repository\org\springframework\data\spring-data-commons\2.6.4\spring-data-commons-2.6.4.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-orm\5.3.20\spring-orm-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-tx\5.3.20\spring-tx-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-aspects\5.3.20\spring-aspects-5.3.20.jar;C:\Users\lekha\.m2\repository\com\microsoft\sqlserver\mssql-jdbc\9.4.1.jre8\mssql-jdbc-9.4.1.jre8.jar;C:\Users\lekha\.m2\repository\org\projectlombok\lombok\1.18.24\lombok-1.18.24.jar;C:\Users\lekha\.m2\repository\net\minidev\json-smart\2.4.8\json-smart-2.4.8.jar;C:\Users\lekha\.m2\repository\net\minidev\accessors-smart\2.4.8\accessors-smart-2.4.8.jar;C:\Users\lekha\.m2\repository\org\ow2\asm\asm\9.1\asm-9.1.jar;C:\Users\lekha\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\2.3.3\jakarta.xml.bind-api-2.3.3.jar;C:\Users\lekha\.m2\repository\jakarta\activation\jakarta.activation-api\1.2.2\jakarta.activation-api-1.2.2.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-core\5.3.20\spring-core-5.3.20.jar;C:\Users\lekha\.m2\repository\org\springframework\spring-jcl\5.3.20\spring-jcl-5.3.20.jar;C:\Users\lekha\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar;C:\Users\lekha\.m2\repository\org\thymeleaf\thymeleaf-spring5\3.0.15.RELEASE\thymeleaf-spring5-3.0.15.RELEASE.jar;C:\Users\lekha\.m2\repository\org\thymeleaf\thymeleaf\3.0.15.RELEASE\thymeleaf-3.0.15.RELEASE.jar;C:\Users\lekha\.m2\repository\org\attoparser\attoparser\2.0.5.RELEASE\attoparser-2.0.5.RELEASE.jar;C:\Users\lekha\.m2\repository\org\unbescape\unbescape\1.1.6.RELEASE\unbescape-1.1.6.RELEASE.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 98566144                                  {product} {ergonomic}
+     bool ManagementServer                         = true                                      {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 1553989632                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 4096                                   {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 0                                      {pd product} {ergonomic}
+     bool ProfileInterpreter                       = false                                  {pd product} {command line}
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}
+     bool ShowCodeDetailsInExceptionMessages       = true                                   {manageable} {command line}
+   size_t SoftMaxHeapSize                          = 1553989632                             {manageable} {ergonomic}
+     intx TieredStopAtLevel                        = 1                                         {product} {command line}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+PATH=C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft MPI\Bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\lekha\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Azure Data Studio\bin;C:\Users\lekha\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\lekha\AppData\Roaming\npm
+USERNAME=Dan
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 9, GenuineIntel
+TMP=C:\Users\lekha\AppData\Local\Temp
+TEMP=C:\Users\lekha\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 10 , 64 bit Build 19041 (10.0.19041.5072)
+OS uptime: 2 days 3:22 hours
+
+CPU: total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 142 stepping 9 microcode 0xb4, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, fma, vzeroupper, clflush, clflushopt, rdtscp, f16c
+Processor Information for all 4 processors :
+  Max Mhz: 2400, Current Mhz: 2400, Mhz Limit: 2400
+
+Memory: 4k page, system-wide physical 5921M (424M free)
+TotalPageFile size 10017M (AvailPageFile size 93M)
+current process WorkingSet (physical memory assigned to process): 10M, peak: 10M
+current process commit charge ("private bytes"): 46M, peak: 140M
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (21.0.2+13-LTS-58) for windows-amd64 JRE (21.0.2+13-LTS-58), built on 2024-01-05T18:32:24Z by "mach5one" with MS VC++ 17.1 (VS2022)
+
+END.

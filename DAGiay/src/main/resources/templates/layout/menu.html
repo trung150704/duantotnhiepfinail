@@ -1,0 +1,135 @@
+<div xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="menu"> 
+  <script>
+  function validateSearch() {
+      var input = document.getElementById("search-input").value;
+      if (input.trim() === "") {
+          alert("Vui lòng nhập từ khóa tìm kiếm.");
+          return false; // Ngăn chặn gửi form nếu ô tìm kiếm rỗng
+      }
+      return true; // Gửi form nếu có giá trị
+  }
+  </script>
+
+<header class="fixed-top" >
+  <div class="row">
+    <div class="col" style="height: 28px; background-color: black; padding: 5px 10px;">
+            <p class="text-light m-auto text-center " style="margin: 0; font-size: 12px;">30-DAY FREE EXCHANGE</p>
+    </div>
+</div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" th:href="@{|/home/index|}">
+     SPORTS
+    </a>
+    <div class="collapse navbar-collapse">
+     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+       <a class="nav-link active" th:href="@{|/product/list|}">
+        SẢN PHẨM
+       </a>
+       <div class="main-content">
+        <div class="arrow-up">
+        </div>
+        <div class="main-content-container container">
+         <div class="row justify-content-center">
+          <div class="col-md-4">
+           <a th:href="@{|/product/ListNam|}">
+            <img alt="Man sitting on a bench wearing green shoes" height="250" src="https://ananas.vn/wp-content/uploads/gi%C3%A0y-nam-e1720844745768.jpg" width="250"/>
+            <div class="category-title">
+             CHO NAM
+            </div></a>
+          </div>
+          <div class="col-md-4">
+           <a th:href="@{|/product/ListNu|}">
+            <img alt="Woman gardening wearing yellow socks" height="250" src="https://ananas.vn/wp-content/uploads/shoess-anatomy-1.jpg" width="250"/>
+            <div class="category-title">
+             CHO NỮ
+            </div></a>
+          </div>
+          <div class="col-md-4">
+           <a href="#">
+            <img alt="Person handling boxes with SALE OFF text" height="250" src="/Images/Saleff.jpg" width="250"/>
+            <div class="category-title">
+             OUTLET SALE
+            </div></a>
+          </div>
+         </div>
+         <div class="main-text">
+          HÃY ĐẾN VỚI SPORTS CỦA CHÚNG TÔI
+         </div>
+        </div>
+       </div>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" th:href="@{|/product/ListNam|}">
+        NAM
+       </a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" th:href="@{|/product/ListNu|}">
+        NỮ
+       </a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" th:href="@{|/product/sale|}">
+        SALE OFF
+       </a>
+      </li>
+     </ul>
+     <form action="/product/Search" method="get" onsubmit="return validateSearch()">
+    <div class="search-box">
+        <input id="search-input" name="query" placeholder="Tìm kiếm" type="text" required />
+        <i class="fas fa-search" ></i>
+    </div>
+</form>
+     <div class="icon-container">
+    <a th:href="@{/cart/heart}" class="position-relative">
+		    <i class="bi bi-bag-heart-fill" style="font-size: 24px;"></i>
+		    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
+		           style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">{{cart.totalFavoritesQty}}</span>
+		</a>
+     
+     
+     <!-- Kiểm tra nếu người dùng đã đăng nhập -->
+<th:block th:if="${#request.remoteUser}">
+    <div class="nav-item dropdown d-inline-flex">
+        <a class="nav-link ibar-title py-0 dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
+           data-toggle="dropdown" aria-expanded="false" style="font-size: 18px;">
+            <i class="fas fa-user"></i>
+            <!-- Hiển thị tên đầy đủ của người dùng -->
+            <span th:text="${#request.remoteUser}"></span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    
+        <a class="dropdown-item" style="font-size: 15px;" th:href="@{/up}">Thông tin cá nhân</a>
+              <a class="dropdown-item" style="font-size: 15px;" th:href="@{/repass}">Đổi mật khẩu </a>
+            <a class="dropdown-item" style="font-size: 15px;" th:href="@{/your_orders}">Tất cả hóa đơn</a>
+            <a th:if="${#request.isUserInRole('ADMIN')}"
+               th:href="@{/admin/home/index}" class="dropdown-item" style="font-size: 15px;">Quản Lý</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" style="font-size: 15px;" th:href="@{/security/logoff}">Đăng xuất</a>
+        </div>
+    </div>
+</th:block>
+
+<!-- Trường hợp người dùng chưa đăng nhập -->
+<th:block th:unless="${#request.remoteUser}">
+    <a th:href="@{/security/login/form}" class="position-relative text-decoration-none text-dark" style="margin-right: 10px;">
+        <i class="fas fa-user"></i>
+    </a>
+</th:block>
+     
+      <a th:href="@{/cart/view}" class="position-relative">
+		    <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
+		    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
+		           style="font-size: 0.75rem; padding: 0.25rem 0.5rem;">{{cart.count}}</span>
+		</a>
+     </div>
+    </div>
+   </nav>
+</header>
+</div>
+</div>
+
+
+

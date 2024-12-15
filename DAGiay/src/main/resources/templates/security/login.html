@@ -1,0 +1,84 @@
+<div xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{/layout/index :: dynamic(~{::main})}">
+	<main>
+	<br>
+	<br>
+		<div class="main">
+			<div class="box-form">
+				<div class="left">
+					<div class="overlay">
+						<h1>WELCOME</h1>
+						<p>Tạo tài khoản để nhận được nhiều ưu đãi hơn.</p>
+						<span class="otherLogin"> <a
+							href="/oauth2/authorization/facebook"><img
+								th:src="@{/images/facebook.png}" alt="">Facebook</a> <a
+							href="/oauth2/authorization/google"><img
+								th:src="@{/images/google.png}" alt="">Google</a>
+						</span>
+					</div>
+				</div>
+
+				<div class="right text-center">
+					<div class="form-signin">
+						<h1 class="h3 mb-3 fw-normal alert alert-[[${color}]]">Đăng
+							nhập</h1>
+						<div id="error-message">
+							<div th:if="${errorMessage}" class="alert alert-danger"
+								role="alert">
+								<p th:text="${errorMessage}"></p>
+							</div>
+							<div th:if="${message}" class="alert alert-success" role="alert">
+								<p th:text="${message}"></p>
+							</div>
+						</div>
+						<form action="/security/login" method="post">
+
+							<div class="form-floating">
+								<input type="text" class="form-control" id="floatingInput"
+									placeholder="Username" name="username"> <label
+									for="floatingInput">Tên đăng nhập</label>
+							</div>
+							<div class="form-floating">
+								<input type="password" class="form-control"
+									id="floatingPassword" placeholder="Password" name="password">
+								<label for="floatingPassword">Mật khẩu</label>
+							</div>
+
+							<div class="checkbox mb-3">
+								<label> <input type="checkbox" name="remember"
+									value="true"> Remember me?
+								</label>
+							</div>
+							<button class="w-100 btn btn-lg btn-primary">Đăng nhập</button>
+							<!--<h5 style="margin-top: 10px; color: red;">${message}</h5>-->
+							<p class="mt-5 mb-3 text-light fw-bold fs-5">WELCOME</p>
+						</form>
+					</div>
+					<p class="text-light">
+						Không có tài khoản? <a class="fw-bold" th:href="@{/register}" style="text-decoration: none;">Tạo tài khoản</a>
+					</p>
+				</div>
+
+			</div>
+		</div>
+	</main>
+</div>
+<link rel="stylesheet" href="/css/login.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+	crossorigin="anonymous">
+	
+</script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+	integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+	crossorigin="anonymous">
+	
+</script>

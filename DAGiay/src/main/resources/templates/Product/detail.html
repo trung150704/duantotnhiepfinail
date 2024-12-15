@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+    <main class="container mt-5	">
+    <div class="row">
+        <div class="col-5 m-2 d-flex" >
+        	<nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{|/product/list|}" style="text-decoration: none; color: gray;">Sản Phẩm</a></li>              
+                <li class="breadcrumb-item"><a th:href="@{'/product/list'(productLine=${item.describe})}" style="text-decoration: none; color: gray;" th:text="${item.describe}"></a></li>
+                <li class="breadcrumb-item active fw-bold"  th:text="${item.name}"></li>
+            </ol>
+        	</nav>
+        </div>
+        <hr>
+            <div class="col-md-6">
+                <!-- Main Product Image -->
+                <img th:src="@{/Images/{images}(images=${item.images})}" class="img-fluid w-100 product-img " alt="Product Image"/>
+            </div>
+            <div class="col-md-6">
+                <!-- Product Details -->
+                <h2 class="fw-bold m-3" th:text="${item.name}"></h2>
+                <h4 class="fw-normal m-3">Mã sản phẩm: <strong  th:text="${item.id}"></strong></h4>
+                <input type="hidden" id="productId" th:value="${item.id}" />
+                <p class="fs-3 text-warning m-3 fw-bold" th:text="${formattedPrice}"></p>
+                <hr style="border-top: 1px dashed #ccc;">
+                <h5 class="fw-normal m-3">Dòng sản phẩm: <strong th:text="${item.describe}"></strong></h5>
+                <p  class="text-success fw-bold m-3"></p>
+                <hr style="border-top: 1px dashed #ccc;">
+                <div class="d-flex m-3">
+		            <div class="col-md-6 m-1">
+		                <label for="size" class="form-label fs-2 fw-bold">SIZE</label>
+		                <select id="size" class="form-select custom-select w-50 ">
+		                    <option th:each="size : ${sizes}" 
+					                th:text="${size.size}" 
+					                th:value="${size.size}">Size
+					        </option>
+		                </select>
+		            </div>
+		            <div class="col-md-6 m-1">
+                    <label for="quantity"  class="form-label fs-2 fw-bold">Số lượng: </label>
+                    <input class="w-50 form-label rounded" placeholder="Chọn số lượng" id="quantity" ng-change="cart.saveToLocalStorage()" ng-model="item.qty"  type = "number" min="1" style="width: 50px; height: 38px">
+                	</div>
+		        </div>
+	                <div class="d-flex m-3 ">
+	                	<div class="col-md-10 m-1">
+		                	<button class="btn btn-success w-100 fw-bold fs-4" th:attr="ng-click=@{|cart.add(${item.id})|}" style="height: 50px; background: black">
+		                	THÊM VÀO GIỎ HÀNG</button>
+	                	</div>
+	                	<div class="col-md-2 m-1 d-flex justify-content-end" >
+						    <button th:attr="ng-click=@{|cart.addToFavorites(${item.id})|}" class="btn btn-outline-secondary fs-4">
+						        <i class="bi bi-heart"></i>
+						    </button>
+						</div>
+	
+	                </div>
+		            <div class=" col-12">
+		                <a th:href="@{/order/checkout}">
+			                <button class="btn m-3 w-100 fw-bold fs-3 text-light" style="height: 50px; background: #f60" >
+			                THANH TOÁN
+			                </button>
+		                </a>
+		            </div>
+            </div>
+        </div>
+        <hr style="border-top: 1px dashed #ccc;" class="mt-5">
+        
+       <strong class="d-flex justify-content-center mt-4 fs-3">CÁC SẢN PHẨM KHÁC</strong>
+       <br>
+       <div id="allProductsCarousel" class="carousel slide">
+		    <div class="carousel-inner">
+		        <div class="carousel-item active">
+		            <div class="row">
+		                <div class="col-md-3" th:each="p, status : ${items}" th:if="${status.index < 4}">
+		                    <div class="product-card position-relative">
+		                        <a th:href="@{/product/detail/{id}(id=${p.id})}">
+		                            <img th:src="@{/Images/{images}(images=${p.images})}" class="img-thumbnail w-100" alt="Thumbnail" style="border: none">
+		                        </a>
+		                        <div class="product-title text-center" th:text="${p.name}"></div>
+		                        <div class="text-center" th:text="${p.describe}"></div>
+		                        <div class="product-price text-center" th:text="${p.price} + '00 VNĐ'"></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="carousel-item">
+		            <div class="row">
+		                <div class="col-md-3" th:each="p, status : ${items}" th:if="${status.index >= 4 && status.index < 8}">
+		                    <div class="product-card position-relative">
+		                        <a th:href="@{/product/detail/{id}(id=${p.id})}">
+		                            <img th:src="@{/Images/{images}(images=${p.images})}" class="img-thumbnail w-100" alt="Thumbnail" style="border: none">
+		                        </a>
+		                        <div class="product-title text-center" th:text="${p.name}"></div>
+		                        <div class="text-center" th:text="${p.describe}"></div>
+		                        <div class="product-price text-center" th:text="${p.price} + '00 VNĐ'"></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="carousel-item">
+		            <div class="row">
+		                <div class="col-md-3" th:each="p, status : ${items}" th:if="${status.index >= 8 && status.index < 12}">
+		                    <div class="product-card position-relative">
+		                        <a th:href="@{/product/detail/{id}(id=${p.id})}">
+		                            <img th:src="@{/Images/{images}(images=${p.images})}" class="img-thumbnail w-100" alt="Thumbnail" style="border: none">
+		                        </a>
+		                        <div class="product-title text-center" th:text="${p.name}"></div>
+		                        <div class="text-center" th:text="${p.describe}"></div>
+		                        <div class="product-price text-center" th:text="${p.price} + '00 VNĐ'"></div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+    
+		    <button class="carousel-control-prev" type="button" data-bs-target="#allProductsCarousel" data-bs-slide="prev" 
+		            style="border-radius: 50%;width: 50px;height: 50px;top: 170px;left: -60px;
+		                   display: flex;align-items: center;justify-content: center;transition: 0.3s ease;">
+		        <i class="bi bi-caret-left-fill" style="width: 20px; height: 20px; color: black"></i>
+		    </button>
+		    <button class="carousel-control-next" type="button" data-bs-target="#allProductsCarousel" data-bs-slide="next"
+		            style="border-radius: 50%;width: 50px;height: 50px;top: 170px;right: -60px;
+		                   display: flex;align-items: center; justify-content: center; transition: 0.3s ease;">
+		        <i class="bi bi-caret-right-fill" style="width: 20px; height: 20px; color: black"></i>
+		    </button>
+</div>
+      <br><br>
+    </main>
+</body>
+</html>

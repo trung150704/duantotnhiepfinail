@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}"  ng-app="cartApp" ng-controller="cartController">
+<body>
+<main >
+    <br>
+    <div class="container mt-4"></div>
+    
+    <hr> <!--  --> <!--  ng-submit="cart.clear()" -->
+    <form id="paymentForm" th:action="@{/order/success}" method="post" onsubmit="return validateForm(); updateTotalAmount();">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="p-2" style="background-color: #e9ecef;">
+                    <h4 class="fw-bold mt-2">THÔNG TIN GIAO HÀNG</h4>
+                </div>
+                <div class="row">
+                    <input class="m-3 col-md-10 p-2" placeholder="Họ Tên" type="text" id="name" required name="name">
+                    <input class="m-3 col-md-10 p-2" placeholder="Số điện thoại" type="tel" id="phone" required name="phone">
+                    <input class="m-3 col-md-10 p-2" placeholder="Email" type="email" id="email" required name="email">
+                    <input class="m-3 col-md-10 p-2" placeholder="Địa chỉ" type="text" id="address" required name="address">
+                    <select class="m-3 col-md-10 p-2" id="city" required name="city">
+                        <option value="">Tỉnh/Thành Phố</option>
+                    </select>
+                    <div class="col-md-10 mt-3 m-3 " id="district" required>
+                        <select class="col-md-5 p-2 " id="districtSelect" name="district" required
+                        style="position: relative; right: 13px">
+					        <option value="0">Chọn Quận/Huyện</option>
+					    </select>
+					    <select class="col-md-5  float-end p-2" id="ward" name="ward" required
+					    style="position: relative; left: 13px">
+					        <option value="0">Chọn Phường/Xã</option>
+					    </select>
+                    </div>
+                    <div class="form-check mt-4 m-3">
+                            <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="subscribe">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Cập nhật các thông tin mới nhất về chương trình từ Sports
+                            </label>
+                    </div>
+                    <input type="hidden" id="cityNameHidden" name="cityName">
+                    <input type="hidden" id="districtNameHidden" name="districtName">
+                    <input type="hidden" id="wardNameHidden" name="wardName">
+                    <div class="row m-1">
+                        <div class="p-2 mt-2" style="background-color: #e9ecef;">
+                            <h4 class="fw-bold mt-2">PHƯƠNG THỨC GIAO HÀNG</h4>
+                        </div>
+                        <div class="form-check mt-4">
+                            <input type="radio" class="form-check-input" checked>
+                            <label class="form-check-label">Tốc độ tiêu chuẩn (từ 2 - 5 ngày làm việc) </label>
+                        </div>
+                    </div>
+                    <div class="row m-1">
+					    <div class="p-2 mt-2" style="background-color: #e9ecef;">
+					        <h4 class="fw-bold mt-2">PHƯƠNG THỨC THANH TOÁN</h4>
+					    </div>
+					    <div th:each="payment : ${payments}" class="form-check mt-4">
+					        <input type="radio" class="form-check-input" th:id="${'payment' + payment.id}" name="paymentMethod" th:value="${payment.id}" th:checked="${payment.paymethod == 'Thanh toán trực tiếp khi giao hàng'}">
+					        <label class="form-check-label" th:for="${'payment' + payment.id}" th:text="${payment.paymethod}"></label>
+					
+					        <div class="payment-info" style="display: inline-block; position: relative; margin-left: 5px;">
+					            <span class="info-icon" style="color: #ff5722; font-weight: bold; cursor: pointer; display: inline-block; padding: 0 5px; font-size: 16px;"
+					                  onmouseover="this.nextElementSibling.style.opacity = '1'; this.nextElementSibling.style.visibility = 'visible';" 
+					                  onmouseout="this.nextElementSibling.style.opacity = '0'; this.nextElementSibling.style.visibility = 'hidden';">?
+					            </span>
+					            <div class="info-tooltip" style="visibility: hidden; opacity: 0; transition: opacity 0.3s ease, visibility 0.3s ease; position: absolute; background: #ffffff; color: grey; padding: 8px 12px; border-radius: 5px; z-index: 10; top: -45px; left: 30px; text-align: center; width: 300px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+					                <span th:text="${payment.decribe}"></span>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+                </div>
+            </div>
+            <!-- Cart Summary -->
+            <div class="col-md-4" style="background-color: #e9ecef;">
+                <div class="cart-summary p-2">
+                    <h4 class="fw-bold mt-2">ĐƠN HÀNG</h4>
+                    <hr style="border-top: 1px dashed #ccc;">
+                    <div ng-repeat="item in cart.items">
+                        <div class="d-flex position-relative">
+                            <h5 class="fw-bold text-secondary fs-6 w-100" style="max-width: 250px;">{{item.name}}</h5>
+                            <p class="text-secondary position-absolute bottom-5 end-0 ">{{item.price | number:3}} VNĐ</p>
+                        </div>
+                        <div class="d-flex text-secondary">
+                            <div class="mt-1">
+                                <label class="form-label fw-bold">Size: </label>
+                                <span>{{item.size}}</span>
+                            </div>
+                            <div class="m-1" style="position: relative; bottom: 6px; left: 10px;">
+                                <label for="quantity" class="form-label fw-bold text-secondary">x</label>
+                                <input type="text" ng-model="item.qty" min="1" class="form-control d-inline-block text-secondary" style="width: 70px; border: none;" readonly>
+                            </div>
+                        </div>
+                        <hr style="border-top: 1px dashed #ccc;">
+                    </div>
+                    <div>
+                        <p class="fw-bold">Đơn hàng: <span id="cartAmount" class="float-end fw-bold">{{cart.amount | number:3}} VNĐ</span></p>
+                        <p><strong>Số lượng: <span class="float-end">{{cart.count}}</span></strong></p>
+                        <p><strong>Phí vận chuyển: <span id="shippingFee" class="float-end" >0 VNĐ</span></strong></p>
+                        <hr style="border-top: 1px dashed #ccc;">                      						
+						<p><strong>TỔNG CỘNG:</strong> <span class="float-end fw-bold"  id="totalAmount" style="color: orange;">{{ cart.amount | number:3 }} VNĐ</span></p>						
+						<input type="hidden" id="totalAmountInput" name="totalAmount" value="0">
+                    </div>
+                 <button ng-click="order.purchase()" class="btn btn-warning w-100 mt-3 fw-bold text-light p-4 fs-4" type="button" style="background: #f60;">HOÀN TẤT ĐẶT HÀNG</button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
+    <script src="/js/validation.js"></script>
+</main>
+</body>
+</html>

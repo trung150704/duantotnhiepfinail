@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+</head>
+<body>
+ <main>
+     <div class="container mt-4">
+     	<div class="row">
+     		<div class="container mt-5">
+     					<h2>
+    						<span th:text="'Tìm thấy ' + ${totalProducts} + ' sản phẩm cho: ' + ${productLine}"></span>
+						</h2>
+                    <div class="row" style="margin-top: 20px;">
+                    
+                        <!-- Product 1 -->
+                        <div class="col-md-4" th:each="p : ${items}">
+                            <div class="products-card position-relative">
+                               <a th:href="@{|/product/detail/${p.id}|}"> <img th:src="@{/Images/{images}(images=${p.images})}" alt="Vintas Public 2000s - Low Top"></a>
+                                <div class="products-title" th:utext=${p.name}></div>
+                                <div class="products-price"><span  th:text="${p.price}+'00 VNĐ'"></span></div>
+                                <button class=" btn-buys" th:href="@{|/product/detail/${p.id}|}">MUA NGAY</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+     	</div>
+     </div>
+ </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body style="font-family: 'Arial', sans-serif; background-color: #f8f9fa;">
+    <main>
+        <div class="col-md-12 d-flex justify-content-center" style="margin-top: 50px;">
+            <div class="mb-3" style="max-width: 600px; width: 100%; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 20px;">
+                <div style="text-align: center; color: #28a745; margin-bottom: 20px;">
+                    <i class="bi bi-check-circle-fill" style="font-size: 50px;"></i>
+                </div>
+                <h2 style="text-align: center; font-size: 20px; font-weight: bold; margin-bottom: 20px;">
+                    Đơn hàng của bạn đã được đặt thành công!
+                </h2>
+                <div style="padding: 10px; background-color: #f1f1f1; border-radius: 5px; margin-bottom: 20px;">
+                    <p style="margin: 5px 0;"><strong>Mã đơn hàng:</strong> <span th:text="${order.id}"></span></p>
+                    <p style="margin: 5px 0;"><strong>Tên người nhận:</strong> <span th:text="${order.hoten}"></span></p>
+                    <p style="margin: 5px 0;"><strong>Số điện thoại:</strong> <span th:text="${order.sdt}"></span></p>
+                    <p style="margin: 5px 0;"><strong>Email:</strong> <span th:text="${order.email}"></span></p>
+                    <p style="margin: 5px 0;"><strong>Địa chỉ:</strong> <span th:text="${order.address}"></span></p>
+                    <p style="margin: 5px 0;"><strong>Phương thức thanh toán:</strong> <span th:text="${order.payment.paymethod}"></span></p>
+                    <p style="margin: 5px 0;"><strong>Tổng Tiền:</strong> <span th:text="${formattedTotalAmount}"></span></p>
+                </div>
+                <!-- Link dẫn đến chi tiết đơn hàng -->
+                <div style="text-align: center;">
+                    <a th:href="@{'/your_orders/' + ${orderId}}" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 16px;">
+                        Xem chi tiết đơn hàng
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

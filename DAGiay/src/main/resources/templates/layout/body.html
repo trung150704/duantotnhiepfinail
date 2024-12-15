@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<head>
+<meta charset="UTF-8">
+</head>
+<main>
+<div class="banner">
+  </div>
+  <div class="content">
+   <div class="section">
+    <div class="item">
+     <img alt="All Black in Black" height="400" src="/Images/Black.jpg" width="600"/>
+     <h3>
+      ALL BLACK IN BLACK
+     </h3>
+     <p>
+      Màu đen dụng được nhiều, nhưng để sắc lên nó cũng toát lên một vẻ huyền bí không nhầm chán.
+     </p>
+    </div>
+    <div class="item">
+     <img alt="Outlet Sale" height="400" src="/Images/Sale.jpg" width="600"/>
+     <h3>
+      OUTLET SALE
+     </h3>
+     <p>
+      Dành mục những sản phẩm bán "giá hời" đã được kiểm định online - Online Only, những gì bạn tìm mua sẽ làm gợi nhớ bạn về những gì bạn từng bỏ lỡ, đã bỏ lỡ.
+     </p>
+    </div>
+   </div>
+   <h2>
+    DANH MỤC MUA HÀNG
+   </h2>
+   <div class="categories">
+    <div class="category">
+     <img alt="Giày Nam" height="300" src="https://sneakerdaily.vn/wp-content/uploads/2020/05/54727996_1021210818049454_4005129081661161472_o.jpg.webp" width="400"/>
+     <h3>
+      GIÀY NAM
+     </h3>
+     <ul>
+      <li>
+       <a href="#">
+        New Arrivals
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Best Seller
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Sale Off
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="category">
+     <img alt="Giày Nữ" height="300" src="https://vietnamleather.com/wp-content/uploads/2022/12/giay-ananas-3-400x400.jpg" width="400"/>
+     <h3>
+      GIÀY NỮ
+     </h3>
+     <ul>
+      <li>
+       <a href="#">
+        New Arrivals
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Best Seller
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Sale Off
+       </a>
+      </li>
+     </ul>
+    </div>
+    <div class="category">
+     <img alt="Dòng Sản Phẩm" height="300" src="https://staging.ananas.vn/wp-content/uploads/SC_Mobile_Banner.jpg"  width="400"/>
+     <h3>
+      DÒNG SẢN PHẨM
+     </h3>
+     <ul>
+      <li>
+       <a href="#">
+        Basas
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Vintas
+       </a>
+      </li>
+      <li>
+       <a href="#">
+        Pattas
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="carousel">
+    <div class="container mt-5">
+        <h2>DÀNH CHO BẠN</h2>
+        <div id="allProductsCarousel" class="carousel slide">
+    <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+            <div class="row">
+                <div class="col-md-3" th:each="p, status : ${items}" th:if="${status.index < 4}">
+                    <div class="product-card position-relative">
+                        <a th:href="@{/product/detail/{id}(id=${p.id})}">
+                            <img th:src="@{/Images/{images}(images=${p.images})}" class="img-thumbnail w-100" alt="Thumbnail" style="border: none">
+                        </a>
+                        <div class="product-title text-center" th:text="${p.name}"></div>
+                        <div class="product-price text-center" th:text="${p.price} + '00 VNĐ'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+            <div class="row">
+                <div class="col-md-3" th:each="p, status : ${items}" th:if="${status.index >= 4 && status.index < 8}">
+                    <div class="product-card position-relative">
+                        <a th:href="@{/product/detail/{id}(id=${p.id})}">
+                            <img th:src="@{/Images/{images}(images=${p.images})}" class="img-thumbnail w-100" alt="Thumbnail" style="border: none">
+                        </a>
+                        <div class="product-title text-center" th:text="${p.name}"></div>
+                        <div class="product-price text-center" th:text="${p.price} + '00 VNĐ'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+            <div class="row">
+                <div class="col-md-3" th:each="p, status : ${items}" th:if="${status.index >= 8 && status.index < 12}">
+                    <div class="product-card position-relative">
+                        <a th:href="@{/product/detail/{id}(id=${p.id})}">
+                            <img th:src="@{/Images/{images}(images=${p.images})}" class="img-thumbnail w-100" alt="Thumbnail" style="border: none">
+                        </a>
+                        <div class="product-title text-center" th:text="${p.name}"></div>
+                        <div class="product-price text-center" th:text="${p.price} + '00 VNĐ'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#allProductsCarousel" data-bs-slide="prev" 
+            style="border-radius: 50%; 
+                   width: 50px; 
+                   height: 50px;
+                   top: 170px; 
+                   left: -60px;
+                   display: flex; 
+                   align-items: center; 
+                   justify-content: center; 
+                   transition: 0.3s ease;">
+        <i class="bi bi-caret-left-fill" style="width: 20px; height: 20px; color: black"></i>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#allProductsCarousel" data-bs-slide="next"
+            style="border-radius: 50%; 
+                   width: 50px; 
+                   height: 50px; 
+                   top: 170px; 
+                   right: -60px;
+                   display: flex; 
+                   align-items: center; 
+                   justify-content: center; 
+                   transition: 0.3s ease;">
+        <i class="bi bi-caret-right-fill" style="width: 20px; height: 20px; color: black"></i>
+    </button>
+</div>
+
+
+        
+    </div>
+
+
+   <div class="slogan">
+    <p class="line1">
+     MUA NGAY ĐỂ NHẬN ƯU ĐÃI ĐẶC BIỆT
+    </p>
+    <p class="line2">
+     VÀ SẮM ĐƯỢC CHO MÌNH NHỮNG SẢN PHẨM CHẤT LƯỢNG NHẤT
+    </p>
+   </div>
+   <div class="cta-bar">
+    <p>
+     HÃY TRỞ THÀNH NGƯỜI ĐỒNG HÀNH VỚI CHÚNG TÔI
+    </p>
+    <a th:href="@{/register}"><button>
+     ĐĂNG KÝ TÀI KHOẢN
+    </button></a>
+   </div>
+  </div>
+  </div>
+</main>
+</html>

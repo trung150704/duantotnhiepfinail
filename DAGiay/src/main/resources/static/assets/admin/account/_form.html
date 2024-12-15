@@ -1,0 +1,64 @@
+<div class="col-12"style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; background-color: #f8f9fa;">
+<div ng-show="!showAccountListFlag">
+   <div class="panel-heading text-center fs-4 fw-bold mt-2">Chỉnh Sửa Tài Khoản</div>
+        <div class="row m-2">
+        <div class="form-group col-6">
+            <label>Tài Khoản</label>
+            <div ng-if="!isEditable">
+            	<input type="text" class="form-control" ng-model="form.username" readonly style="background-color: #f0f0f0; cursor: not-allowed;"/>
+            </div>
+            <div ng-if="isEditable">
+            	<input type="text" class="form-control" ng-model="form.username"/>
+            </div>
+        </div>
+        <div class="form-group col-6">
+            <label>Ngày</label>
+            <input type="text" class="form-control" ng-model="form.created_at" readonly style="background-color: #f0f0f0; cursor: not-allowed;"/>
+        </div>
+        </div>
+        <div class="row m-2">
+        <div class="form-group col-6">
+            <label>Email</label>
+            <input type="email" class="form-control" ng-model="form.email" />
+        </div>
+        <div class="form-group col-6">
+            <label>Địa Chỉ</label>
+            <input type="text" class="form-control" ng-model="form.address" />
+        </div>
+        </div>
+        <div class="row m-2">
+        <div class="form-group col-6">
+            <label>Họ và Tên</label>
+            <input type="text" class="form-control" ng-model="form.fullname" />
+        </div>
+        <div class="form-group col-sm-6">
+            <label class=" fw-bold">Vai Trò</label><br />
+            <label class="form-check-label me-3 ">
+                <input type="radio" ng-model="form.role" ng-value="true" class="form-check-input" />
+                    Admin
+             </label>
+             <label class="form-check-label">
+                 <input type="radio" ng-model="form.role" ng-value="false" class="form-check-input" />
+                    User
+             </label>
+        </div>
+        
+        </div>
+        
+        <div class="col-12 text-center m-3 p-3">
+	    <button class="btn btn-success" ng-click="create()" ng-disabled="form.id">
+	        <i class="bi bi-plus-circle"></i> Thêm
+	    </button>
+	    <button class="btn btn-primary" ng-click="update()" ng-disabled="form.id">
+	        <i class="bi bi-pencil-square"></i> Sửa
+	    </button>
+	    <button class="btn btn-danger" ng-click="delete(form)" ng-disabled="form.id">
+	        <i class="bi bi-trash"></i> Xóa
+	    </button>
+	    <button class="btn btn-warning" ng-click="reset()">
+	        <i class="bi bi-arrow-repeat"></i> Mới
+	    </button>
+	</div>
+</div>
+
+</div>

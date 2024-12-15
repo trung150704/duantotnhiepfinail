@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý</title>
+  <link rel="icon" type="image/x-icon" href="/Images/hehe.png">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- jQuery and AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Roboto', sans-serif;
+    }
+    header h2 {
+      margin: 20px 0;
+      font-weight: bold;
+    }
+    nav .navbar {
+      margin-bottom: 20px;
+    }
+    nav .navbar-nav .nav-link {
+      color: #ffffff;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    nav .navbar-nav .nav-link:hover {
+      color: #ffc107;
+    }
+    footer {
+      background-color: #343a40;
+      color: #ffffff;
+      padding: 10px 0;
+      text-align: center;
+    }
+    footer .panel-body {
+      font-size: 14px;
+    }
+    .ng-view {
+	  display: none;
+	}
+	
+	.ng-view[ng-if="!isIndexPage"] {
+	  display: block;
+	  min-height: 0;
+	  background: #ffffff;
+	  padding: 20px;
+	  border-radius: 8px;
+	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+
+    #welcome-section {
+    background: linear-gradient(120deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  #welcome-section h1 {
+    font-size: 2.5rem;
+    color: #007bff;
+  }
+  #welcome-section p {
+    font-size: 1.2rem;
+    color: #6c757d;
+  }
+  #welcome-section img {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  #welcome-section .btn {
+    transition: all 0.3s ease-in-out;
+  }
+  #welcome-section .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  </style>
+</head>
+<body class="container" ng-app="admin-app">
+  <!-- Header -->
+  <header class="row mt-3 text-center">
+    <h2 class="alert alert-success">ADMIN</h2>
+  </header>
+
+  <!-- Navigation -->
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Trang chủ</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="#!product">Sản Phẩm</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!category">Danh Mục</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!account">Tài Khoản</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!order">Đơn Hàng</a></li>
+          </ul>
+
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link text-danger fw-bold" href="/security/logoff">Đăng Xuất</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+<main class="mt-3 mb-3 row">
+  <!-- AngularJS dynamic view -->
+  <div class="ng-view" ng-if="!isIndexPage"></div>
+
+  <!-- Default content for index page -->
+  <div class="text-center p-5" id="welcome-section" ng-if="isIndexPage">
+    <h1 class="text-primary fw-bold">Chào mừng đến với trang Quản Lý</h1>
+    <p class="text-muted">Dễ dàng quản lý sản phẩm, danh mục, tài khoản và đơn hàng của bạn ở cùng một nơi.</p>
+    <img src="https://cdn-icons-png.flaticon.com/512/2197/2197684.png" 
+         alt="Dashboard Overview" 
+         class="img-fluid my-3" 
+         style="max-width: 200px;">
+
+    <!-- Call-to-Action Buttons -->
+    <div class="mt-4">
+      <a href="#!product" class="btn btn-outline-primary btn-lg m-2">
+        <i class="bi bi-box"></i> Quản lý Sản Phẩm
+      </a>
+      <a href="#!category" class="btn btn-outline-success btn-lg m-2">
+        <i class="bi bi-tags"></i> Quản lý Danh Mục
+      </a>
+      <a href="#!account" class="btn btn-outline-warning btn-lg m-2">
+        <i class="bi bi-person"></i> Quản lý Tài Khoản
+      </a>
+      <a href="#!order" class="btn btn-outline-danger btn-lg m-2">
+        <i class="bi bi-card-checklist"></i> Quản lý Đơn Hàng
+      </a>
+    </div>
+  </div>
+</main>
+
+  <!-- Footer -->
+  <footer class="row text-center rounded mb-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        &copy; 2024 Admin Dashboard. Bảo lưu mọi quyền.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Custom Scripts -->
+  <script src="/assets/admin/admin-app.js"></script>
+  <script src="/assets/admin/category/category-ctrl.js"></script>
+  <script src="/assets/admin/product/product-ctrl.js"></script>
+  <script src="/assets/admin/account/account-ctrl.js"></script>
+  <script src="/assets/admin/order/order-ctrl.js"></script>
+</body>
+</html>

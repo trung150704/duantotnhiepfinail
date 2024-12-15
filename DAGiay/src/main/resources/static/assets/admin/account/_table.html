@@ -1,0 +1,65 @@
+<div class="panel panel-default" ng-if="accounts.length > 0">
+    <!-- <div class="panel-heading bg-primary text-white">
+        <h3 class="panel-title">Account List</h3>
+    </div> -->
+    <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-warning p-2 rounded" style="width: auto; text-align: center;">
+            <strong>Chỉnh Sửa Người Dùng ID: {{form.username || 'Không Có'}}</strong>
+        </div>
+    </div>
+    
+    <table class="table table-hover table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã</th>
+                <th>Họ và Tên</th>
+                <th>Email</th>
+                <th>Dia chị</th>
+                <th>Ngày</th>
+                <th>Trạng Thái</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="account in pager.items">
+                <td>{{account.username}}</td>
+                <td>{{account.fullname}}</td>
+                <td>{{account.email}}</td>
+                <td>{{account.address}}</td>
+                <td>{{account.created_at | date : 'dd-MM-yyyy'}}</td>
+                <td>
+                    <span class="badge" ng-class="{'bg-success': account.role === false, 'bg-warning': account.role === true}">
+                        {{account.role == false ? 'User' : 'Admin'}}
+                    </span>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button ng-click="edit(account)" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Sửa
+                        </button>
+                        <button ng-click="delete(account)" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Xóa
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Pagination Controls -->
+    <div class="panel-footer text-center">
+        <button ng-click="pager.first()" class="btn btn-danger" ng-disabled="pager.page === 0">
+            <i class="bi bi-arrow-left-circle"></i>
+        </button>
+        <button ng-click="pager.prev()" class="btn btn-primary" ng-disabled="pager.page === 0">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+        <span class="btn btn-info">Page {{pager.page + 1}} of {{pager.count}}</span>
+        <button ng-click="pager.next()" class="btn btn-primary" ng-disabled="pager.page >= pager.count - 1">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+        <button ng-click="pager.last()" class="btn btn-danger" ng-disabled="pager.page >= pager.count - 1">
+            <i class="bi bi-arrow-right-circle"></i>
+        </button>
+    </div>
+</div>

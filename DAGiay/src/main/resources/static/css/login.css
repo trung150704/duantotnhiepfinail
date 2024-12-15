@@ -1,0 +1,135 @@
+@charset "UTF-8";
+.main {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../Images/Web1920-1.png);
+    height: 750px;
+    padding-top: 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 1%; 
+    margin: 2px;
+}
+
+.box-form {
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 10px;
+    height: 550px;
+
+}
+
+.left {
+    overflow: hidden;
+    float: left;
+    width: 60%;
+    height: 100%;
+    position: relative;
+}
+
+.right {
+    float: right;
+    min-height: 100%;
+    width: 40%;
+    background-color: rgba(252, 219, 176, 0.514);
+    border-radius: 10px;
+}
+
+.overlay {
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.overlay>h1 {
+    font-size: 83pt;
+    /* line-height: 1; */
+    font-weight: 500;
+    /* margin-top: 5px; */
+    margin-bottom: 15px;
+    color: rgb(255, 255, 255);
+}
+
+.overlay>p {
+    color: white;
+    font-size: 15pt;
+    /* background-color: #6cd9fa8b; */
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 400;
+}
+
+.otherLogin {
+    position: absolute;
+    bottom: 40px;
+}
+
+.otherLogin>p {
+    margin-top: 30px;
+    font-weight: 900;
+}
+
+.otherLogin>a {
+    color: #0a0606;
+    font-weight: 500;
+    padding: 12px 50px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    display: inline-block;
+    box-shadow: 0 3px 6px 1px #042d4657;
+    background: #6cd9fae1;
+    text-decoration: none;
+}
+
+.otherLogin>a>img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+form>img {
+    margin-top: 20px;
+}
+
+.form {
+    padding: 25px 40px 4px 40px;
+}
+
+.form-floating {
+    margin: 10px 0;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.signup {
+    text-decoration: none;
+    float: right;
+    margin: 10px;
+}

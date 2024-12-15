@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+<main>
+    <div class="container mt-4" >
+        <div class="row" style="justify-content: center;">
+            <div class="col-md-9">
+                <!-- Free shipping banner -->
+                <div class="free-shipping-banner">
+                    FREE SHIPPING<br>Với hoá đơn từ 900K!
+                </div>
+                <div class="container mt-5">
+                    <div class="row">
+                        <!-- Product 1 -->
+                        <div class="col-md-4" th:each="p : ${items}">
+                            <div class="product-card position-relative">
+                                <a th:href="@{|/product/detail/${p.id}|}"> <img th:src="@{/Images/{images}(images=${p.images})}"></a>
+                                <h6 class="type" style="color: red; display: flex;
+                                    justify-content: center;
+                                    margin-top: 10px; ">Sale off - <p th:text="${p.discount} + '%'"></p></h6>
+                                <h3 class="divider" style="border-top: 1px dashed #ccc;
+                                margin: 10px 0;
+                                text-align: center;
+                                height: 0;
+                                line-height: 0;"></h3>
+                                <div class="product-title" th:utext=${p.name}></div>
+                                <div class="fw-normal" th:utext=${p.describe}></div>
+                                <div class="product-price" style="display: flex; justify-content: space-around;">
+                                    <span th:text="${p.price - (p.price * p.discount / 100.0)} +'00 VNĐ'"></span>
+                                    <del style="opacity: 0.5;" th:text="${p.price}+'00 VNĐ'"></del>
+                                </div>
+                                <a th:href="@{|/product/detail/${p.id}|}"><button class="btn-buy" >MUA NGAY</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

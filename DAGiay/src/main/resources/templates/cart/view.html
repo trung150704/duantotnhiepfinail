@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<body>
+<main th:fragment="shopping_cart" >    
+    <br>
+    <div class="container mt-4"></div>
+    <hr>
+    
+    <!-- Cart and summary -->
+    <div class="row">
+        <!-- Cart Items -->
+        <div class="col-md-8">
+            <div class="p-2" style="background-color: #e9ecef;">
+                <h4 class="fw-bold mt-2">GIỎ HÀNG</h4>
+            </div>
+
+            <!-- Product Item -->
+            <div class="row border-bottom py-3 " ng-repeat="item in cart.items">
+                <!-- Product Image -->
+                <div class="col-md-3">
+                    <img ng:src="/Images/{{item.images}}" alt="Product Image" class="img-fluid rounded" style="width: 100%; max-width: 200px;">
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-md-6">
+                    <h5 class="fw-bold">{{item.name}}</h5>
+                    <p class="text-secondary mt-4"> <strong>Giá:</strong> {{item.price | number:3}} VNĐ</p>
+                    <div class="d-flex mt-5 float-start">
+                        <!-- Size Selector -->
+                        <div class="mt-5 m-2" style="position: relative; bottom: 10px;">
+                            <label class="form-label fw-bold text-dark">Size: </label>
+                            <span>{{item.size}}</span>
+                        </div>
+
+                        <!-- Quantity Selector -->
+                        <div class="mt-4 m-2" style="position: relative; top: 7px;">
+                            <label for="quantity" class="form-label fw-bold text-dark">Số lượng: </label>
+                            <input ng-change="cart.saveToLocalStorage()" ng-model="item.qty" type="number" min="1" class="form-control d-inline-block" style="width: 70px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price and Actions -->
+                <div class="col-md-3 text-end">
+                    <p class="text-danger fw-bold fs-4">{{(item.price * item.qty) | number:3 }} VNĐ</p>
+                    <span class="text-success d-block mb-5 fw-bold">Còn hàng</span>
+                    <div class="mt-5" style="position: relative; top: 33px">
+                        <!-- Heart Icon -->
+                        <button ng-click="cart.addToFavoritesFromCart(item)" class="btn btn-outline-secondary me-2">
+				            <i class="bi bi-heart"></i>
+				        </button>
+                        <!-- Trash Icon -->
+                        <button ng-click="cart.remove(item.id)" class="btn btn-dark"><i class="bi bi-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="col-md-4 bg-orangeS" style="position: relative; top: 0; max-height: 380px; background-color: #e9ecef; left: 5px">
+            <div class="cart-summary p-2">
+                <h4 class="fw-bold mt-2">ĐƠN HÀNG</h4>
+                <hr style="border-top: 1px dashed #ccc;">
+                <p>Đơn hàng: <span class="float-end">{{cart.amount | number:3}} VNĐ</span></p>
+                <p>Giảm: <span class="float-end">0 VNĐ</span></p>
+                <hr style="border-top: 1px dashed #ccc;">
+                <p><strong>Số lượng: <span class="float-end">{{cart.count}}</span></strong></p>
+                <p><strong>TẠM TINH: <span class="float-end">{{cart.amount | number:3}} VNĐ</span></strong></p>
+                <a th:href="@{/order/checkout}"><button class="btn btn-warning w-100 mt-3 fw-bold text-light p-3 fs-4" style="background: #f60">TIẾP TỤC THANH TOÁN</button></a>
+            </div>
+        </div>
+
+        <div class="col-8 mt-4">
+            <a th:href="@{/product/list}" class="btn btn-dark text-light fw-bold float-end">QUAY LẠI MUA HÀNG</a>
+            <button ng-click="cart.clear()" class="btn btn-dark text-light btn-warning fw-bold">XÓA HẾT</button>
+        </div>
+    </div>
+    <br>
+</main>
+</body>
+</html>

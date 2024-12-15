@@ -1,0 +1,85 @@
+<div class="container" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.1);
+			 border-radius: 8px; background-color: #f8f9fa;">
+	<div class="panel panel-default" >
+    <div class="panel-heading text-center fs-4 fw-bold mt-2">Chỉnh Sửa Sản Phẩm</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-4 text-center">
+                <label for="image">
+                    <img ng-src="{{'/Images/' + form.images}}" class="img-fluid" style="max-height: 200px;" alt="Product Image">
+                </label>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="name">Tên</label>
+                        <input ng-model="form.name" class="form-control" id="name" placeholder="Product Name">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="price">Giá</label>
+                        <input ng-model="form.price" class="form-control" id="price" placeholder="Product Price">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="image">Ảnh</label>
+                        <input type="file" class="form-control" id="images" onchange="angular.element(this).scope().imageChanged(this.files)">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="category">Danh Mục</label>
+                        <select ng-model="form.category.id" class="form-control" id="category">
+                            <option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="describe">Hàng</label>
+                        <input ng-model="form.describe" class="form-control" id="describe" placeholder="Product Description">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer col-12 text-center m-3 p-3">
+        <button ng-click="create()" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Thêm
+        </button>
+        <button ng-click="update()" class="btn btn-success">
+            <i class="bi bi-pencil-square"></i> Sửa
+        </button>
+        <button ng-click="delete(form)" class="btn btn-danger">
+            <i class="bi bi-trash"></i> Xóa
+        </button>
+        <button ng-click="reset()" class="btn btn-info">
+            <i class="bi bi-arrow-repeat"></i> Mới
+        </button>
+    </div>
+</div>
+<hr>
+<div class="col-10 m-auto d-flex justify-content-start">
+    <div class="panel panel-default mb-2">
+        <div class="panel-heading text-center">
+            <h4>Chỉnh sửa kích cỡ số lượng sản phẩm</h4>
+        </div>
+        <div class="panel-body d-flex flex-wrap">
+            <div class="form-group me-3 mb-3" ng-repeat="s in sizes">
+                <div class="checkbox-inline">
+                    <label>
+                        <input type="checkbox" ng-model="form.selectedSizes[s.id]" ng-change="onSizeSelect(s.id)">
+                        {{s.size}}
+                    </label>
+                </div>
+                <input type="number" ng-model="form.counts[s.id]" 
+                       ng-disabled="!form.selectedSizes[s.id]"
+                       placeholder="Quantity" class="form-control" min="1" style="max-width: 190px;">
+            </div>
+        </div>
+        <div class="panel-footer text-center mb-2">
+            <button ng-click="update()" class="btn btn-success">
+                <i class="bi bi-save"></i> Cập Nhật Size
+            </button>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,54 @@
+<div class="panel panel-default" ng-if="categories">
+    <!-- <div class="panel-heading text-center fs-4 fw-bold bg-success text-white" style="font-variant: small-caps;">
+        CATEGORY LIST
+    </div> -->
+    <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-warning p-2 rounded" style="width: auto; text-align: center;">
+            <strong>Chỉnh sửa Danh Mục ID: {{form.id || 'Không có'}}</strong>
+        </div>
+    </div>
+    <table class="table table-condensed table-hover">
+        <thead class="bg-success text-white" style="font-variant: small-caps;">
+            <tr>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Mô Tả</th>
+                <th>Tổng Sản Phẩm</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="category in pager.items" class="table-light">
+                <td>{{category.id}}</td>
+                <td>{{category.name}}</td>
+                <td>{{category.describe}}</td>
+                <td>{{category.products.length}}</td> <!-- Assuming "products" is an array -->
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button ng-click="edit(category)" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Sửa
+                        </button>
+                        <button ng-click="delete(category)" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Xóa
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="panel-footer text-center">
+        <button ng-click="pager.first()" class="btn btn-danger" ng-disabled="pager.page === 0">
+            <i class="bi bi-chevron-double-up"></i>
+        </button>
+        <button ng-click="pager.prev()" class="btn btn-primary" ng-disabled="pager.page === 0">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="btn btn-success">{{pager.page + 1}} trên {{pager.count}}</button>
+        <button ng-click="pager.next()" class="btn btn-primary" ng-disabled="pager.page >= pager.count - 1">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+        <button ng-click="pager.last()" class="btn btn-danger" ng-disabled="pager.page >= pager.count - 1">
+            <i class="bi bi-chevron-double-down"></i>
+        </button>
+    </div>
+</div>

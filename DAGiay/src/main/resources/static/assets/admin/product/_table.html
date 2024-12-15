@@ -1,0 +1,56 @@
+<div class="panel panel-default" ng-if="items">
+    <table class="table table-bordered table-condensed">
+        <thead class="bg-success text-white" style="font-variant: small-caps;">
+            <tr>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Hình </th>
+                <th>Giá</th>
+                <th>Ngày</th>
+                <th>Hãng</th>
+                <th>Danh Mục</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in pager.items">
+                <td ng-click="selectProduct(item.id)">{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                    <img ng-src="{{ '/Images/' + item.images }}" class="img-thumbnail" style="width: 50px; height: 50px;" alt="Product Image">
+                </td>
+                <td>{{item.price | number : 3}} vnđ</td>
+                <td>{{item.create_at | date : 'dd-MM-yyyy'}}</td>
+                <td>{{item.describe}}</td>
+                <td>{{item.category.name}}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button ng-click="edit(item)" class="btn btn-warning"><i class="bi bi-pencil"></i>Sửa</button>
+                        <button ng-click="delete(item)" class="btn btn-danger"><i class="bi bi-trash"></i>Xóa</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="panel-footer text-center">
+        <button ng-click="pager.first()" class="btn btn-danger">
+            <i class="bi bi-chevron-double-up"></i>
+        </button>
+        <button ng-click="pager.prev()" class="btn btn-primary">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+        <button class="btn btn-success">{{pager.page + 1}} trên {{pager.count}}</button>
+        <button ng-click="pager.next()" class="btn btn-primary">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+        <button ng-click="pager.last()" class="btn btn-danger">
+            <i class="bi bi-chevron-double-down"></i>
+        </button>
+    </div>
+
+    <input type="hidden" ng-model="form.productId">
+    <div>
+        <p>Selected Product ID: {{form.productId}}</p>
+    </div>
+</div>

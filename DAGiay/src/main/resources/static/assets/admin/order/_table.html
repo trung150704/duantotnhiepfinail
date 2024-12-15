@@ -1,0 +1,79 @@
+<div class="panel panel-default" ng-if="orders">
+    <div class="panel-heading bg-primary text-white">
+    </div>
+    <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+        <div class="bg-warning p-2 rounded" style="width: auto; text-align: center;">
+            <strong>Chỉnh sửa đơn hàng ID: {{form.id || 'Không có'}}</strong>
+        </div>
+        
+        <!-- <div class="d-flex" style="max-width: 300px;">
+            <input type="text" ng-model="searchId" ng-change="filterOrders()" class="form-control me-2" placeholder="Find by ID" />
+            <button type="button" ng-click="filterOrders()" class="btn btn-outline-secondary">
+                <i class="bi bi-search"></i> Search
+            </button>
+        </div> -->
+    </div>
+    
+    <table class="table table-hover table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Ngày</th>
+                <th>SĐT</th>
+                <th>Địa Chỉ</th>
+                <th>Email</th>
+                <th>Giá</th>
+                <th>Trạng Thái</th>
+                <th>Người Dùng</th>
+                <th>Phương Thức Thanh Toán</th>
+                <th>Hành Động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in pager.items">
+                <td>{{item.id}}</td>
+                <td>{{item.hoten}}</td>
+                <td>{{item.createdAt | date : 'dd-MM-yyyy'}}</td>
+                <td>{{item.sdt}}</td>
+                <td>{{item.address}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.totalamount  | number : 0}} VNĐ</td>
+                <td>
+                    <span class="badge" ng-class="{'bg-success': item.status === false, 'bg-warning': item.status === true}">
+                        {{item.status == false ? 'Đã hoàn thành' : 'Chờ xử lý'}}
+                    </span>
+                </td>
+                <td>{{item.account.username}}</td>
+                <td>{{item.payment.paymethod}}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button ng-click="edit(item)" class="btn btn-warning">
+                            <i class="bi bi-pencil"></i> Sửa
+                        </button>
+                        <button ng-click="delete(item)" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Xóa
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Pagination Controls -->
+    <div class="panel-footer text-center">
+        <button ng-click="pager.first()" class="btn btn-danger" ng-disabled="pager.page === 0">
+            <i class="bi bi-arrow-left-circle"></i>
+        </button>
+        <button ng-click="pager.prev()" class="btn btn-primary" ng-disabled="pager.page === 0">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+        <span class="btn btn-info">Trang {{pager.page + 1}} trên {{pager.count}}</span>
+        <button ng-click="pager.next()" class="btn btn-primary" ng-disabled="pager.page >= pager.count - 1">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+        <button ng-click="pager.last()" class="btn btn-danger" ng-disabled="pager.page >= pager.count - 1">
+            <i class="bi bi-arrow-right-circle"></i>
+        </button>
+    </div>
+</div>
